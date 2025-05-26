@@ -79,6 +79,54 @@ app.get("/meetings", async (req, res) => {
   res.json(meetings);
 });
 
+app.post("/finishMeeting", async (req, res) => {
+  const { meetingId, duration, notes, decision, actions, feedbacks } = req.body;
+
+  try {
+    const finish = await prisma.finishMeeting.create({
+      data: {
+        meeting: { connect: { id: meetingId } },
+        duration,
+        notes,
+        decision: JSON.stringify(decision),  
+        actions:   JSON.stringify(actions),
+        feedbacks: JSON.stringify(feedbacks),
+      },
+    });
+    res.json({ id: finish.id });
+  } catch (error) {
+    console.error("Erro ao finalizar reunião:", error);
+    res.status(500).json({ error: "Erro ao finalizar reunião" });
+  }
+});
+app.get("/finishMeeting/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const finish = await prisma.finishMeeting.findUnique({
+      where: { id },
+    });
+    if (!finish) {
+      return res.status(404).json({ error: "FinishMeeting not found" });
+    }
+    res.json(finish);
+  } catch (error) {
+    console.error("Erro ao buscar FinishMeeting:", error);
+    res.status(500).json({ error: "Erro ao buscar FinishMeeting" });
+  }
+});
+
+// (Opcional) GET /finishMeeting → lista todos
+app.get("/finishMeeting", async (req, res) => {
+  try {
+    const allFinishes = await prisma.finishMeeting.findMany();
+    res.json(allFinishes);
+  } catch (error) {
+    console.error("Erro ao listar FinishMeetings:", error);
+    res.status(500).json({ error: "Erro ao listar FinishMeetings" });
+  }
+});
+
+
 app.listen(4000, () => {
   console.log("Server running on http://localhost:4000");
 });

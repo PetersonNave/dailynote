@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../App.css";
 import HomeHeader from "../../components/homeHeader";
+import WidthContainer from "../../components/WidthContainer";
 
 interface ITask {
   id: number;
@@ -12,8 +13,12 @@ function Home() {
   
   return (
     <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+      <WidthContainer>
       <HomeHeader/>
-      <div style={{
+
+      </WidthContainer>
+     <WidthContainer stylesInline={{paddingBottom: '72px'}}>
+       <div style={{
       display: "flex",width: '100%',justifyContent: 'space-around'
     }}>                     
  <div style={{
@@ -44,7 +49,7 @@ function Home() {
             fontSize: "24px",
             color: "#1E293B",
             marginBottom: "4px",
-          }}>Upcoming Meetings</h2>
+          }}>Próximas reuniões</h2>
          <ul style={{listStyle: "none", padding: "0", display: "flex", flexDirection: "column", gap: "16px"}}>
           <li style={{
             display: "flex",
@@ -56,13 +61,13 @@ function Home() {
             padding: "16px",
             }}>
             <div>
-            <p>Frontend Team</p>
-            <span>10:00 AM</span>
+            <p>Time do Front-end</p>
+            <span>Hoje, 10:00</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-              <span>8 participants</span>
-              <button>Join</button>
+              <span>8 participantes</span>
+              <a href="/meeting?id=f8b456b7-8680-45b4-a945-47378c77d452">Entrar</a >
             </div>
           </li>
           <li style={{
@@ -75,13 +80,13 @@ function Home() {
             padding: "16px",
             }}>
             <div>
-            <p>Backend Team</p>
-            <span>11:30 AM</span>
+            <p>Time do Back-end</p>
+            <span>Hoje, 11:30</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-              <span>6 participants</span>
-              <button>Join</button>
+              <span>6 participantes</span>
+              <a href="/meeting?id=4c057eee-3bbc-490b-8e1f-40e2a620bbd3">Entrar</a>
             </div>
           </li>
           <li style={{
@@ -94,13 +99,13 @@ function Home() {
             padding: "16px",
             }}>
             <div>
-            <p>Design Team</p>
-            <span>02:00 PM</span>
+            <p>Time de Design</p>
+            <span>Hoje, 14:00</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-              <span>4 participants</span>
-              <button>Join</button>
+              <span>4 participantes</span>
+              <a href="/meeting?id=1345ceba-6a84-46cd-8100-72dd984a3359">Entrar</a>
             </div>
           </li>
          </ul>
@@ -130,7 +135,7 @@ function Home() {
             fontSize: "24px",
             color: "#1E293B",
             marginBottom: "4px",
-          }}>Recent Meetings</h2>
+          }}>Reuniões recentes</h2>
          <ul style={{listStyle: "none", padding: "0", display: "flex", flexDirection: "column", gap: "16px"}}>
           <li style={{
             display: "flex",
@@ -142,14 +147,19 @@ function Home() {
             padding: "16px",
             }}>
             <div>
-            <p><b>Product Syns</b></p>
-            <span>Yesterday</span>
+            <p><b>Alinhamento semanal</b></p>
+            <span>Ontem</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-              <span style={{
-                color: "#3B82F6"
-              }}>View Notes</span>
+              <a 
+              href="/finish?id=ae3a25b5-7f52-45c5-be37-0f14eb1babe6"
+              style={{
+                
+                color: "#3B82F6",
+                background: 'none',
+                paddingRight: '0px'
+              }}>Ver resumo</a>
             </div>
           </li>
           <li style={{
@@ -163,13 +173,15 @@ function Home() {
             }}>
             <div>
             <p><b>Sprint Review</b></p>
-            <span>2 days ago</span>
+            <span>2 dias atrás</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-              <span style={{
-                color: "#3B82F6"
-              }}>View Notes</span>
+              <a href="/finish?id=c5717679-46f3-4cba-952a-7967af6f213b" style={{
+                color: "#3B82F6",
+                background: 'none',
+                paddingRight: '0px'
+              }}>Ver resumo</a>
             </div>
           </li>
           <li style={{
@@ -183,13 +195,15 @@ function Home() {
             }}>
             <div>
             <p><b>Sprint Planning</b></p>
-            <span>3 days ago</span>
+            <span>3 dias atrás</span>
 
             </div>
             <div style={{display: "flex", flexDirection: "row", gap: "8px", alignItems: "center"}}>
-             <span style={{
-                color: "#3B82F6"
-              }}>View Notes</span>
+             <a href="/finish?id=e88af9bd-f753-4bc6-9a75-d00e886e4512" style={{
+                color: "#3B82F6",
+                background: 'none',
+                paddingRight: '0px'
+              }}>Ver resumo</a>
             </div>
           </li>
          </ul>
@@ -212,7 +226,7 @@ function Home() {
       }}>
         <h2 style={{
           marginTop: "24px",
-        }}>Notifications</h2>
+        }}>Notificações</h2>
            <ul style={{marginTop: '32px', listStyle: "none", padding: "0", display: "flex", flexDirection: "column", gap: "16px"}}>
           <li style={{
             display: "flex",
@@ -229,9 +243,9 @@ function Home() {
               flexDirection: 'column',
               alignItems: 'flex-start'
             }}>
-            <p><b>Task Review Pending</b></p>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>Frontend sprint planning needs your review</i></span>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>2h ago</i></span>
+            <p><b>Revisão de tarefas pendente</b></p>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>'Frontend sprint planning' precisa da sua revisão</i></span>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>2h atrás</i></span>
             </div>
            
           </li>
@@ -250,9 +264,9 @@ function Home() {
               flexDirection: 'column',
               alignItems: 'flex-start'
             }}>
-            <p><b>Meeting Notes Due</b></p>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>Please complete notes from yesterday's standup</i></span>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>4h ago</i></span>
+            <p><b>Notas da reunião...</b></p>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>Por favor, complete as notas da reunião passada</i></span>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>4h atrás</i></span>
             </div>
            
           </li>
@@ -271,9 +285,9 @@ function Home() {
               flexDirection: 'column',
               alignItems: 'flex-start'
             }}>
-            <p><b>Task Review Pending</b></p>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>Frontend sprint planning needs your review</i></span>
-            <span style={{color: "#64748B", fontSize: '12px'}}><i>5h ago</i></span>
+            <p><b>Revisão de tarefas pendente</b></p>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>'Frontend sprint planning' precisa da sua revisão</i></span>
+            <span style={{color: "#64748B", fontSize: '12px'}}><i>5h atrás</i></span>
             </div>
            
           </li>
@@ -282,6 +296,7 @@ function Home() {
       </div>
     </aside>
     </div>
+     </WidthContainer>
     </div>
   
    

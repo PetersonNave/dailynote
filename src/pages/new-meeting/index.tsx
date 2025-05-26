@@ -6,6 +6,7 @@ import { useParticipants } from "../../contexts/participants";
 import Avatar from "../../components/avatar";
 import { useMeetings } from "../../contexts/meetings";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from "../../components/homeIcon";
 
 interface ITopics {
   name: string;
@@ -30,47 +31,22 @@ const NewMeeting = () => {
 
   const [topics, setTopics] = useState<ITopics[]>([
     {
-      name: "Progress Updates",
+      name: "Atualização do progresso",
       duration: 10,
     },
     {
-      name: "Blockers",
+      name: "Bloqueadores",
       duration: 5,
     },
     {
-      name: "Actions Items",
+      name: "Próximos passos",
       duration: 5,
     },
   ]);
 
   const {filtered, setSearch, search} = useParticipants()
   
-  const [participants, setParticipants] = useState<IParticipant[]>([
-    {
-      id: "scmr",
-      name: "Sarah Chen",
-      noteTaker: false,
-      timeKeeper: false,
-    },
-    {
-      id: "mcpr",
-      name: "Michael Park",
-      noteTaker: false,
-      timeKeeper: false,
-    },
-    {
-      id: "ewcf",
-      name: "Emma Wilson",
-      noteTaker: false,
-      timeKeeper: false,
-    },
-    {
-      id: "vcrr",
-      name: "James Rodriguez",
-      noteTaker: false,
-      timeKeeper: false,
-    },
-  ]);
+  const [participants, setParticipants] = useState<IParticipant[]>([]);
 
   const { createMeeting } = useMeetings();
   
@@ -80,6 +56,7 @@ const NewMeeting = () => {
   };
   return (
     <>
+    <HomeIcon/>
       <WidthContainer>
         <header className={styles.header}>
           <span className={styles.title}>Configurar reunião</span>

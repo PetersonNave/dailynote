@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import type { ReactNode } from 'react';
-import debounce from 'lodash.debounce';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
+import type { ReactNode } from "react";
+import debounce from "lodash.debounce";
 
 // Interface definition
 export interface IParticipant {
@@ -11,14 +17,30 @@ export interface IParticipant {
 
 // Mock data
 const mockParticipants: IParticipant[] = [
-  { id: 'alcm',name: 'Alice' },
-  { id: 'bbsc',  name: 'Bob'  },
-  { id: 'cass', name: 'Carol' },
-  { id: 'dave',  name: 'Dave' },
-  { id: 'evel',  name: 'Eve' },
-  { id: 'pjfm',  name: 'Peterson Melo' },
-  { id: 'vcms', name: 'Victor Matias' },
-  { id: 'mxs2', name: 'Matheus Xavier' }
+  { id: "alcm", name: "Alice" },
+  { id: "bbsc", name: "Bob" },
+  { id: "cass", name: "Carol" },
+  { id: "dave", name: "Dave" },
+  { id: "evel", name: "Eve" },
+  { id: "pjfm", name: "Peterson Melo" , imageSrc: "images/peterson-perfil.jpg"},
+  { id: "vcms", name: "Victor Matias", imageSrc: "images/matias-perfil.png" },
+  { id: "mxs2", name: "Matheus Xavier", imageSrc: "images/xavier-perfil.jpg"},
+  {
+    id: "scmr",
+    name: "Sarah Chen",
+  },
+  {
+    id: "mcpr",
+    name: "Michael Park",
+  },
+  {
+    id: "ewcf",
+    name: "Emma Wilson",
+  },
+  {
+    id: "vcrr",
+    name: "James Rodriguez",
+  }
 ];
 
 // Context types
@@ -30,13 +52,17 @@ interface ParticipantsContextValue {
 }
 
 // Create context
-const ParticipantsContext = createContext<ParticipantsContextValue | undefined>(undefined);
+const ParticipantsContext = createContext<ParticipantsContextValue | undefined>(
+  undefined
+);
 
 // Provider component
-export const ParticipantsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ParticipantsProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [participants] = useState<IParticipant[]>(mockParticipants);
-  const [search, setSearch] = useState<string>('');
-  const [debouncedSearch, setDebouncedSearch] = useState<string>('');
+  const [search, setSearch] = useState<string>("");
+  const [debouncedSearch, setDebouncedSearch] = useState<string>("");
 
   // Debounce update of search term
   const debouncedUpdate = useMemo(
@@ -47,20 +73,24 @@ export const ParticipantsProvider: React.FC<{ children: ReactNode }> = ({ childr
   useEffect(() => {
     debouncedUpdate(search);
     // Cleanup on unmount or change
-    return () => { debouncedUpdate.cancel(); };
+    return () => {
+      debouncedUpdate.cancel();
+    };
   }, [search, debouncedUpdate]);
 
   // Filter participants by id or name
   const filtered = useMemo(() => {
     if (!debouncedSearch) return participants;
     const term = debouncedSearch.toLowerCase();
-    return participants.filter(p =>
-      p.id === debouncedSearch || p.name.toLowerCase().includes(term)
+    return participants.filter(
+      (p) => p.id.toLowerCase().includes(term)  || p.name.toLowerCase().includes(term)
     );
   }, [participants, debouncedSearch]);
 
   return (
-    <ParticipantsContext.Provider value={{ participants, filtered, search, setSearch }}>
+    <ParticipantsContext.Provider
+      value={{ participants, filtered, search, setSearch }}
+    >
       {children}
     </ParticipantsContext.Provider>
   );
@@ -70,7 +100,9 @@ export const ParticipantsProvider: React.FC<{ children: ReactNode }> = ({ childr
 export const useParticipants = (): ParticipantsContextValue => {
   const context = useContext(ParticipantsContext);
   if (!context) {
-    throw new Error('useParticipants must be used within a ParticipantsProvider');
+    throw new Error(
+      "useParticipants must be used within a ParticipantsProvider"
+    );
   }
   return context;
 };

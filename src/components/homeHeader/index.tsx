@@ -20,19 +20,19 @@ const HomeHeader = ()=>{
        
         }}>
         <h1 style={{
-          fontSize: "28px",
+          fontSize: "50px",
           color: "#1E293B",
           marginBottom: "4px",
-        }}>Good Evening, Sarah</h1>
+        }}>dailynote</h1>
         <span
           style={{
             fontSize: "16px",
             color: "#64748B",
             fontWeight: "400",
           }}
-        >Here's what's happening today</span>
+        >Como vão as dailys hoje?</span>
         </div>
-        <input type="text" name="" placeholder="Search meetings or topics..." id="" style={{
+        <input type="text" name="" placeholder="Busque por reuniões ou tópicos" id="" style={{
           backgroundColor: "#fff",
           border: "1px solid #E2E8F0",
           fontSize: "16px",
@@ -42,8 +42,15 @@ const HomeHeader = ()=>{
           width: "300px",
           height: "44px",
         }} />
-        <a href="/nova-reuniao">Start New Meeting</a>
-     
+        <a href="/nova-reuniao">Nova Reunião</a>
+        <style>
+          {`
+            
+            a:hover{
+              color: #FFF;
+            }
+          `}
+        </style>
       </div>
     )
 }

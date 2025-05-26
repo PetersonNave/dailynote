@@ -9,8 +9,10 @@ const formatTime = (seconds: number) => {
   return min <= 0 && sec <= 0 ? "FIM DO TÓPICO!" : `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
 };
 
-const TopicsTimer = ({ topics }: { topics: ITopics[] }) => {
+const TopicsTimer = ({ topics, handleFinish }: { topics: ITopics[], handleFinish: (timeStamp:number) => void }) => {
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [initialDuration, setInitialDuration] = useState<number>(topics.map(topic => topic.duration * 60).reduce((a, b) => a + b, 0));
   const [remainingTimes, setRemainingTimes] = useState<number[]>(
     topics.map(topic => topic.duration * 60)
   );
@@ -18,6 +20,12 @@ const TopicsTimer = ({ topics }: { topics: ITopics[] }) => {
   const intervalRef = useRef<number | null>(null);
 
   const currentName = topics[currentIndex]?.name || "";
+
+
+  const calculateTimeStamp  :()=>number=() =>{
+    const totalDuration = remainingTimes.reduce((sum, t) => sum + t, 0);
+    return Math.floor((initialDuration - totalDuration)/60)
+  }
 
   // Timer effect
   useEffect(() => {
@@ -58,9 +66,13 @@ const TopicsTimer = ({ topics }: { topics: ITopics[] }) => {
   return (
     <WidthContainer
       stylesInline={{
-        backgroundColor: "#FFF",
+        background: "#FFF",
         borderBottom: "1px solid #E2E8F0",
         boxShadow: "0px 1px 8px rgba(0,0,0,0.05)",
+        position: 'fixed',
+        top: "0px",
+        left: "0px",
+        zIndex: "999"
       }}
     >
       <div className={styles.container}>
@@ -71,10 +83,14 @@ const TopicsTimer = ({ topics }: { topics: ITopics[] }) => {
           </span>
         </div>
         <div className={styles.rightSide}>
-          <div className={styles.timerContainer}>
-            <span>{formatTime(remainingTimes[currentIndex])}</span>
+          <div  style={{
+                ...isRunning && {backgroundColor: "#3B82F6"}
+            }} className={styles.timerContainer}>
+            <span  style={{
+                ...isRunning && {color: "#FFF"}
+            }}>{formatTime(remainingTimes[currentIndex])}</span>
             <button style={{
-                ...isRunning && {backgroundColor: "#dc3545"}
+                ...isRunning && {backgroundColor: "#dc3545"},
             }} onClick={handleToggle} >
               {isRunning ? "Parar" : "Começar"}
             </button>
@@ -90,6 +106,9 @@ const TopicsTimer = ({ topics }: { topics: ITopics[] }) => {
               Próximo
             </button>
           </div>
+           <div  className={styles.finishDaily}>
+                      <button onClick={()=> handleFinish(calculateTimeStamp())}>Encerrar</button>
+            </div>
         </div>
       </div>
     </WidthContainer>

@@ -43,8 +43,25 @@
 
 .decisionContainer{
     position: absolute;
+    top: 24px;
+    right: 24px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+
+    input {
+        height: 44px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        padding-inline: 12px;
+        width: 100%;
+        display: flex;
+        outline: 0;
+    }
 }
-.decisions{
+.decisions, .actions, .feedbacks{
+    margin-top: 1rem;
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -58,4 +75,84 @@
         align-items: center;
         border-radius: 8px;
     }
+}
+
+.actionsInputContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+    margin-top: 1rem;
+    input, select{
+        height: 44px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+        padding-inline: 12px;
+        width: 100%;
+        display: flex;
+        outline: 0;
+    }
+    span{
+        width: fit-content;
+        display: flex;
+        min-width: 85px;
+        text-align: end;
+    }
+    select{
+        width: 50%;
+    }
+}
+
+.feedbackInputContainer{
+    flex-direction: column;
+    gap: 4px;
+    input{
+        font-style: italic;
+        color: rgb(100, 116, 139);
+    }
+}
+.feedbackSelectContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: 4px;
+
+    span{
+        font-size: 12px;
+        min-width: 64px;
+    }
+}
+.feedbacks{
+    li{
+        height: fit-content;
+        padding-block: 8px;
+        span{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            b{
+                align-self: flex-start;
+                font-size: 12px;
+            }
+
+            i{
+                font-size: 14px;
+                margin-top: 6px;
+                text-align: center;
+                display: flex;
+            }
+        }
+    }
+}
+
+.notes{
+    height: 120px;
+    max-width: 100%;
+    min-width: 100%;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 16px;
 }

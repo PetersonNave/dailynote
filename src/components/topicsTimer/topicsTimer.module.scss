@@ -3,6 +3,7 @@
     width: 100%;
     justify-content: space-between;
     padding-block: 16px;
+    
 }
 .leftSide{
     display: flex;
@@ -22,6 +23,7 @@
 .rightSide{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 24px;
 
     .timerContainer{
@@ -60,5 +62,17 @@
             color: #1E293B;
             border: 1px solid #E2E8F0;
         }
+    }
+}
+
+.finishDaily{
+
+    display: block;
+    align-items: center;
+    
+    button{
+        background-color: rgb(220, 53, 69);
+        color: #FFF;
+        font-weight: bold;
     }
 }
