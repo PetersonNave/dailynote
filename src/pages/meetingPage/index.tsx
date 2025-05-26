@@ -8,6 +8,7 @@ import TopicsTimer from "../../components/topicsTimer";
 import ContainerWithTitle from "../../components/containerWithTitle";
 import type { IParticipant } from "../../contexts/participants";
 
+//const MeetingPage
 const MeetingPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const meetingId = searchParams.get("id");
