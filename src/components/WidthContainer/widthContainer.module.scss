@@ -1,0 +1,14 @@
+.widthContainerSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    background-color: #F8FAFC;
+}
+.widthContainerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1366px;
+    padding: 0px 24px;
+}

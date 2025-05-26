@@ -1,0 +1,210 @@
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0px;
+}
+
+.title{
+    font-size: 28px;
+    color: #1E293B;
+    font-weight: 600;
+}
+
+.meetingSetUpContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 24px;
+    margin-top: 16px;
+    padding-bottom: 72px;
+}
+
+.topicsContainer, .participantsContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+
+    li{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: 58px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 17px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+
+        .topicName{
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .topicDuration{
+            color: #64748B;
+        }
+    }
+}
+
+.addTopicContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    padding: 17px;
+    margin-top: 32px;
+}
+.addTopicTitle{
+    align-self: flex-start;
+    font-weight: 500;
+}
+.addTopicContent{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 12px;
+
+    input{
+        height: 40px;
+        border-radius: 4px;
+        border: 1px solid #E2E8F0;
+        padding-inline: 12px;
+    }
+
+    .topicNameInput{
+        width: 100%;
+    }
+
+    .topicDurationInput{
+        width: 60px;
+        text-align: center;
+        font-weight: 700;
+    }
+}
+
+.topicDurationContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+
+    span{
+        color: #64748B;
+    }
+}
+
+.topicsTotalCount{
+    position: absolute;
+    top: 17px;
+    right: 24px;
+    color: #64748B;
+    display: flex;
+    flex-direction: row;
+}
+
+.participantInfos{
+ display: flex;   
+ gap: 12px;
+ align-items: center;
+
+ img{
+    border-radius: 100%;
+    background-color: #ececec;
+    border: none;
+ }
+}
+
+.participantItem{
+    justify-content: space-between;
+}
+
+.participantsAttr{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    button{
+        height: 29px;
+        padding-inline: 10px;
+        font-size: 14px;
+        color: #64748B;
+        background-color: #F1F5F9;
+        border: none;
+        outline: 0;
+    }
+}
+
+.addParticipantContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.addParticipantTitle{
+    display: flex;
+}
+
+.addParticipantContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.addParticipantInputContainer{
+    position: relative;
+    height: 40px;
+    width: 100%;
+
+    input{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding-inline: 16px;
+        border-radius: 8px;
+        border: 1px solid #E2E8F0;
+    }
+
+    .searchDropdown{
+        transition: all ease 1s;
+        visibility: hidden;
+    }
+
+    &:focus-within{
+        .searchDropdown{
+            visibility: visible;
+        }
+    }
+}
+
+.searchDropdown{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    box-shadow: 0px 10px 10px rgba($color: #000000, $alpha: 0.25);
+    border-radius: 0px 0px 8px 8px;
+    background-color: #FFF;
+    max-height: 168px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    li{
+        width: 100%;
+        display: flex;
+        height: 48px;
+        min-height: 48px;
+        align-items: center;
+        gap: 6px;
+        padding-inline: 16px;
+        cursor: pointer;
+        &:hover{
+            background-color: #ececec;
+        }
+    }
+}
