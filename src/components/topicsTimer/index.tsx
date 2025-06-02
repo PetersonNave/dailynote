@@ -12,10 +12,10 @@ const formatTime = (seconds: number) => {
 const TopicsTimer = ({ topics, handleFinish }: { topics: ITopics[], handleFinish: (timeStamp:number) => void }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [initialDuration, setInitialDuration] = useState<number>(topics.map(topic => topic.duration * 60).reduce((a, b) => a + b, 0));
   const [remainingTimes, setRemainingTimes] = useState<number[]>(
-    topics.map(topic => topic.duration * 60)
-  );
+      topics.map(topic => topic.duration * 60)
+    );
+const [initialDuration, setInitialDuration] = useState<number>(topics.map(topic => topic.duration * 60).reduce((a, b) => a + b, 0));
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
@@ -23,11 +23,12 @@ const TopicsTimer = ({ topics, handleFinish }: { topics: ITopics[], handleFinish
 
 
   const calculateTimeStamp  :()=>number=() =>{
-    const totalDuration = remainingTimes.reduce((sum, t) => sum + t, 0);
+      
+      const totalDuration = remainingTimes.reduce((sum, t) => sum + t, 0);
+      console.log(initialDuration, totalDuration);
     return Math.floor((initialDuration - totalDuration)/60)
   }
 
-  // Timer effect
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {

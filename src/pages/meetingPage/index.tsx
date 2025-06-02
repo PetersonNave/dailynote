@@ -64,7 +64,7 @@ const MeetingPage: React.FC = () => {
 
   const handleFinish = async (timeStamp: number) => {
     try {
-      const response = await fetch("http://localhost:4000/finishMeeting", {
+      const response = await fetch(`${import.meta.env.VITE_NODE_BACKEND_URL}/finishMeeting`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
